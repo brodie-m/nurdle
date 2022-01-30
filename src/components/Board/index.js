@@ -115,7 +115,7 @@ export const Board = () => {
         return result
     }
     
-    
+    console.log(targetWord)
 
   return (<div>
       
