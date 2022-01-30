@@ -15,8 +15,8 @@ const Item = () => {
 export const Board = () => {
     const [gridSize,setGridSize] = useState(3)
     const [inputRow,setInputRow] = useState(0)
-    const [targetWord,setTargetWord] = useState(null)
-
+    const [targetWord,setTargetWord] = useState(false)
+    const [result, setResult] = useState(null)
 
     const getTargetWord = () => {
 
@@ -54,16 +54,7 @@ export const Board = () => {
       };
     }, [gridSize]);
     
-    useEffect(() => {
-      if (keyboardInput.length % gridSize === 0 && keyboardInput.length !== 0) {
-
-        setInputRow(prev=>prev+1)
-      }
     
-      return () => {
-        
-      };
-    }, [keyboardInput]);
 
     useEffect(() => {
 
@@ -127,6 +118,7 @@ export const Board = () => {
   <Button onClick={() => setGridSize(6)}>6</Button>
   <Button onClick={()=>{
           setKeyboardInput([])
+          setInputRow(0)
           getTargetWord()
           }}>reset</Button>
 </ButtonGroup>
@@ -139,7 +131,29 @@ export const Board = () => {
 
       <Keyboard 
       sx={{marginTop: '2rem'}} 
-      onChange={(input) => setKeyboardInput(input)}
+      onKeyPress={(input) => {
+          console.log(input)
+          if (input ==='{bksp}')  {
+              console.log(keyboardInput.slice(0,-1).length , (inputRow)*gridSize )
+              if (keyboardInput.slice(0,-1).length+1 > (inputRow)*gridSize ) {
+                setKeyboardInput(prev=> prev.slice(0,-1))
+              return
+              }
+              return
+              
+          }
+          if (input !== '{enter}' && keyboardInput.length+1 <= (inputRow+1)*gridSize) {
+            setKeyboardInput(prev=>prev+=input)
+            return
+          }
+          if (input===`{enter}` && keyboardInput.length === (inputRow+1)*gridSize) {
+              setInputRow(prev=>prev+1)
+              return
+          }
+          
+        
+        console.log(keyboardInput)
+        }}
       theme={"hg-theme-default hg-layout-default myTheme"}
           layoutName={"default"}
           layout={{
