@@ -1,9 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+.gridItem {
+  transition: all 2s ease;
+  background-color: white;
+  
+}
 .correctlyPlaced {
+  transition: all 0.5s ease;
+  transform: rotateX('180deg');
   background-color: green !important;
 }
 .correct {
+  transition: all 0.5s ease;
   background-color : orange !important;
 }
 .incorrect {
+  transition: all 0.5s ease;
   background-color: grey !important;
+}
+
+
+
+.simple-keyboard {
+  max-width: 850px;
+}
+
+.simple-keyboard.hg-theme-default.myTheme {
+  border: 5px solid rgb(255, 0, 0, 0.7);
+  border-radius: 10px;
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+
+.simple-keyboard.hg-layout-default .hg-button.hg-red {
+  background: rgb(255, 0, 0, 0.7);
+  color: white;
+}
+
+.simple-keyboard.hg-layout-default .hg-button.hg-highlight {
+  box-shadow: 0px 0px 40px 5px rgba(255, 255, 0, 0.5);
+  z-index: 1;
+}
+
+.header {
+  color: white;
 }
