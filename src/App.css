@@ -1,0 +1,9 @@
+.correctlyPlaced {
+  background-color: green !important;
+}
+.correct {
+  background-color : orange !important;
+}
+.incorrect {
+  background-color: grey !important;
+}
